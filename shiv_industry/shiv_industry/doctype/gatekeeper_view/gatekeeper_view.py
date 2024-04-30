@@ -7,6 +7,7 @@ from frappe.model.mapper import get_mapped_doc
 
 class GatekeeperView(Document):
 	def validate(self):
+		return 0
 		if not self.custom_purchase_receipt and len(self.items) > 0:
 			i = 0
 			def update_receipt(source,target, source_parent):
@@ -29,7 +30,7 @@ class GatekeeperView(Document):
 				{
 					"Purchase Order": {
 						"doctype": "Purchase Receipt",
-						"field_map": {"supplier_warehouse": "supplier_warehouse"},					
+						"field_map": {"supplier_warehouse": "supplier_warehouse", "base_grand_total": "base_grand_total"},					
 						"validation": {
 							"docstatus": ["=", 1],
 						},
